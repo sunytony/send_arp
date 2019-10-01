@@ -65,7 +65,7 @@ void arp_send_pkt_req(uint8_t* send_mac, uint8_t* send_ip, uint8_t* mymac, uint8
 	arp_req_ether_hdr->type = 0x0608;
 	printf("arp header\n");
 	//request packet arp_head
-	*(uint16_t*)(arp_req_arp_hdr+14) = 0x0100;
+	arp_req_arp_hdr->hardware_type = 0x0100;
 	printf("0");
 	arp_req_arp_hdr->protocol_type = 0x0008;
 	arp_req_arp_hdr->hardware_addr_len = 6;
